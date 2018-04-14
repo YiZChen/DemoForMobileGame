@@ -8,5 +8,29 @@ using UnityEngine;
 /// </summary>
 public class GameCtrl : GameBase
 {
+    private void Awake()
+    {
 
+    }
+
+    public override void Excute(int eventCode, object message)
+    {
+        switch (eventCode)
+        {
+            case GameEvent.GAME_LEVEL_CHOOSE:
+                break;
+
+            case GameEvent.GAME_LEVEL_BEGIN:
+                break;
+
+            case GameEvent.GAME_PAUSE:
+                break;
+
+            case GameEvent.GAME_OVER:
+                break;
+
+            default:
+                break;
+        }
+    }
 }

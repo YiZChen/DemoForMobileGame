@@ -8,5 +8,20 @@ using UnityEngine;
 /// </summary>
 public class ShopCtrl : ShopBase
 {
+    private void Awake()
+    {
 
+    }
+
+    public override void Excute(int eventCode, object message)
+    {
+        switch (eventCode)
+        {
+            case ShopEvent.SHOP_ITEM_SOLD:
+                break;
+
+            default:
+                break;
+        }
+    }
 }

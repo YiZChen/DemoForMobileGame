@@ -8,6 +8,20 @@ using UnityEngine;
 /// </summary>
 public class AchievementCtrl : AchievementBase
 {
+    private void Awake()
+    {
 
+    }
 
+    public override void Excute(int eventCode, object message)
+    {
+        switch (eventCode)
+        {
+            case AchievementEvent.ACHIEVEMENT_UPDATE:
+                break;
+
+            default:
+                break;
+        }
+    }
 }

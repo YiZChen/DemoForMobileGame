@@ -25,7 +25,7 @@ public class AudioBase : MonoBase
     /// </summary>
     protected void UnBind()
     {
-        AchievementManager.Instance.Remove(list.ToArray(), this);
+        AudioManager.Instance.Remove(list.ToArray(), this);
     }
 
     /// <summary>

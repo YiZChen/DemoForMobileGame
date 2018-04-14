@@ -79,7 +79,7 @@ public class ManagerBase : MonoBase {
     public void Remove(int eventCode, MonoBase mono)
     {
         //如果所指定的事件没有注册
-        if(!dic.ContainsKey(eventCode))
+        if (!dic.ContainsKey(eventCode))
         {
             Debug.LogWarning(eventCode + "号事件没有被注册");
             return;

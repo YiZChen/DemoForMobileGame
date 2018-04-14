@@ -8,9 +8,29 @@ using UnityEngine;
 /// </summary>
 public class UICtrl : UIBase
 {
+    //声明菜单Index
+    private enum MenuIndex
+    {
+        rootMenu = 0,
+        startMenu = 1,
+        achievementMenu = 2,
+        shopMenu = 3,
+        optionMenu = 4,
+        aboutMenu = 5,
+        loadingMenu = 6
+    }
+
+    [SerializeField]
+    private GameObject[] _menuList;
+
+    [SerializeField]
+    private GameObject _buttonReturn;
+
     private void Awake()
     {
         Bind(UIEvent.UI_START_BUTTON_CLICK);
+
+        ReturnMenu();
     }
 
     public override void Excute(int eventCode, object message)
@@ -38,9 +58,50 @@ public class UICtrl : UIBase
         }
     }
 
-    public void OnStartButtonClick()
+    /// <summary>
+    /// 设置哪一个菜单显示
+    /// </summary>
+    /// <param name="n"></param>
+    private void ShowMenu(int n)
     {
-        Dispatch(ModuleCode.MODUEL_UI, UIEvent.UI_START_BUTTON_CLICK, null);
+        for (int i = 0; i < _menuList.Length; i++)
+        {
+            if (i != n)
+            {
+                _menuList[i].SetActive(false);
+            }
+            else
+            {
+                _menuList[i].SetActive(true);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 点击开始按钮
+    /// </summary>
+    public void OnButtonClick(int menuIndex)
+    {
+        ShowMenu(menuIndex);
+        _buttonReturn.SetActive(true);
         Dispatch(ModuleCode.MODUEL_AUDIO, AudioEvent.AUDIO_PLAY, null);
+    }
+
+    /// <summary>
+    /// 返回菜单
+    /// </summary>
+    public void ReturnMenu()
+    {
+        ShowMenu((int)MenuIndex.rootMenu);
+        _buttonReturn.SetActive(false);
+    }
+
+    /// <summary>
+    /// 游戏开始
+    /// </summary>
+    public void GameBegin()
+    {
+        ShowMenu((int)MenuIndex.loadingMenu);
+        LevelLoader.Instance.LoadLevel(1);
     }
 }
